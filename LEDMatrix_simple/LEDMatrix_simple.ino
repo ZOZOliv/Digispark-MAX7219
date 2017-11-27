@@ -69,14 +69,23 @@ int mode=0;
 
 void loop()
 {
-  /*clr();*/
-  showDigit(9, 0,  dig8x8);
-  showDigit(8, 8,  dig8x8);
-  showDigit(7, 16, dig8x8);
-  showDigit(6, 24, dig8x8);
+  clr();
+  showDigit(3, 24,  monster);
   refreshAll();
-  delay(2000);
-  
+  clr();
+  delay(500);
+  showDigit(3, 16,  monster);
+  refreshAll();
+  clr();
+  delay(500);
+  showDigit(3, 8, monster);
+  refreshAll();
+  clr();
+  delay(500);
+  showDigit(3, 0, monster);
+  refreshAll();
+  delay(500);
+  clr();
   /*if( millis() - start > 6000 && del == 0) {
     start = millis();
     mode++;
@@ -100,6 +109,7 @@ void loop()
   num = 8;
   counter();
   } else printStringWithShift(" Scroll test: 0123456789 abcdefghijk ABCDEFGHIJK ", 32);*/
+  printStringWithShift("JOYEUX NOEL  ", 64);
 }
 
 
@@ -236,7 +246,8 @@ void printCharWithShift(unsigned char c, int shift_speed) {
   for (int i=0; i<w+1; i++) {
     delay(shift_speed);
     scrollLeft();
-    refreshAll();
+    //refreshAll();
+    refreshAll_New();
   }
 }
 

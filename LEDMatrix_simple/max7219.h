@@ -15,6 +15,32 @@
 #define CMD_DISPLAYTEST 15
 
 byte scr[NUM_MAX*8 + 8]; // +8 for scrolled char
+byte scr_rotate[NUM_MAX*8 + 8];
+
+void rotatebyte()
+{
+  for (int i=0; i<NUM_MAX*8+8; i++)
+  {
+    for (int j=0; j<8; j++)
+    {
+      int indexbit =i % 8;
+      int indexbyte=abs(j-8) + ((i / 8) * 8) - 1;
+      bitWrite(scr_rotate[indexbyte], indexbit, bitRead(scr[i], j));
+    }
+  }
+}
+
+void refreshAll_New() {
+  rotatebyte();
+  for (int c = 0; c < 8; c++) {
+    digitalWrite(CS_PIN, LOW);
+    for(int i=NUM_MAX-1; i>=0; i--) {
+      shiftOut(DIN_PIN, CLK_PIN, MSBFIRST, CMD_DIGIT0 + c);
+      shiftOut(DIN_PIN, CLK_PIN, MSBFIRST, scr_rotate[i * 8 + c]);
+    }
+    digitalWrite(CS_PIN, HIGH);
+ }
+}
 
 void sendCmd(int addr, byte cmd, byte data)
 {
