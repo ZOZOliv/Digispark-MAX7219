@@ -109,7 +109,7 @@ void loop()
   num = 8;
   counter();
   } else printStringWithShift(" Scroll test: 0123456789 abcdefghijk ABCDEFGHIJK ", 32);*/
-  printStringWithShift("JOYEUX NOEL  ", 64);
+  printStringWithShift("JOYEUX NOEL - Oh! Oh! Oh! - JOYEUSES FETES  ", 64);
 }
 
 
